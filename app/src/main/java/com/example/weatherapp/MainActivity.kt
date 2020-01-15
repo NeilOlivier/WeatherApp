@@ -18,13 +18,16 @@ import androidx.core.app.ComponentActivity
 import androidx.core.app.ComponentActivity.ExtraData
 import androidx.core.content.ContextCompat.getSystemService
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-
+import com.example.weatherapp.Helpers.WeatherService
 
 
 @SuppressLint("ByteOrderMark")
 class MainActivity : AppCompatActivity() {
 
     private lateinit var fusedLocationClient: FusedLocationProviderClient
+    private var longitude = 0.0
+    private var latitude = 0.0
+    private var weatherData = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -76,13 +79,19 @@ class MainActivity : AppCompatActivity() {
 
         fusedLocationClient.lastLocation
             .addOnSuccessListener { location : Location? ->
+                if (location != null) {
+                    latitude = location.latitude;
+                    longitude = location.longitude;
 
-                if(location == null){
-                    // error message
+                    getWeatherData(latitude, longitude);
                 }
             }.addOnFailureListener {
                 Log.d("test", it.toString());
             }
+    }
+
+    private fun getWeatherData(latitude : Double, long: Double ) {
+        weatherData = WeatherService();
     }
 
 }

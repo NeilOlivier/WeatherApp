@@ -1,23 +1,16 @@
 package com.example.weatherapp
 
-import android.Manifest
 import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
-import android.Manifest.permission
 import android.Manifest.permission.ACCESS_COARSE_LOCATION
-import android.Manifest.permission.ACCESS_FINE_LOCATION
 import android.annotation.SuppressLint
 import androidx.core.app.ActivityCompat
 import android.content.pm.PackageManager
 import androidx.core.content.ContextCompat
-import androidx.core.app.ComponentActivity
-import androidx.core.app.ComponentActivity.ExtraData
-import androidx.core.content.ContextCompat.getSystemService
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import com.example.weatherapp.Helpers.WeatherService
 
 
@@ -27,7 +20,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private var longitude = 0.0
     private var latitude = 0.0
-    private var weatherData = null
+    private var weatherData = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -91,7 +84,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getWeatherData(latitude : Double, long: Double ) {
-        weatherData = WeatherService();
+        weatherData = WeatherService(this).getCurrentWeather();
     }
 
 }

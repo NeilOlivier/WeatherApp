@@ -1,25 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/backgroundSunny"
     tools:context=".MainActivity">
 
     <ProgressBar
+        android:id="@+id/ProgressLoader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/ProgressLoader"
         android:indeterminate="true"
         android:indeterminateTint="@color/colorPrimaryDark"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/sunnyView"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
@@ -27,5 +28,285 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/sea_sunnypng" />
+
+    <TextView
+        android:id="@+id/temperature"
+        android:layout_width="89dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="132dp"
+        android:text="23 \u00B0"
+        android:textColor="@color/white"
+        android:textSize="100px"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/sunnyView"
+        app:layout_constraintHorizontal_bias="0.517"
+        app:layout_constraintStart_toStartOf="@+id/sunnyView"
+        app:layout_constraintTop_toTopOf="@+id/sunnyView" />
+
+    <TextView
+        android:id="@+id/weatherType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SUNNY"
+        android:textColor="@color/white"
+        android:textSize="80px"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/sunnyView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/temperature" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="22dp"
+        android:layout_marginTop="1dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sunnyView">
+
+        <TextView
+            android:id="@+id/currentMinValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="140px"
+            android:textColor="@color/white"
+            android:layout_weight="1"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/currentValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:layout_weight="1"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/currentMaxValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:layout_weight="1"
+            android:text="TextView" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/currentDay"
+        android:layout_width="match_parent"
+        android:layout_height="22dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+        <TextView
+            android:id="@+id/currentMinText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="150px"
+            android:textColor="@color/white"
+            android:layout_weight="1"
+            android:text="min" />
+
+        <TextView
+            android:id="@+id/currentV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:layout_weight="1"
+            android:text="current" />
+
+        <TextView
+            android:id="@+id/cur"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:layout_weight="1"
+            android:text="max" />
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2px"
+        android:background="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/currentDay"/>
+    <LinearLayout
+        android:id="@+id/tuesdayLayout"
+        android:layout_width="match_parent"
+        android:layout_height="22dp"
+        android:layout_marginTop="50px"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/currentDay">
+        <TextView
+            android:id="@+id/tuesday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="110px"
+            android:textColor="@color/white"
+            android:layout_weight="1"
+            android:text="Tuesday" />
+
+        <TextView
+            android:id="@+id/tuesdayImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:layout_weight="1"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/tuesdayValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:layout_weight="1"
+            android:text="TextView" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/WednesdayLayout"
+        android:layout_width="match_parent"
+        android:layout_height="22dp"
+        android:layout_marginTop="50px"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tuesdayLayout">
+        <TextView
+            android:id="@+id/wednesday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="110px"
+            android:textColor="@color/white"
+            android:layout_weight="1"
+            android:text="Wednesday" />
+
+        <TextView
+            android:id="@+id/wednesdayImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="@color/white"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/wednesdayValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:layout_weight="1"
+            android:text="TextView" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/ThursdayLayout"
+        android:layout_width="match_parent"
+        android:layout_height="22dp"
+        android:layout_marginTop="50px"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/WednesdayLayout">
+        <TextView
+            android:id="@+id/thursday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="110px"
+            android:textColor="@color/white"
+            android:layout_weight="1"
+            android:text="Thursday" />
+
+        <TextView
+            android:id="@+id/thursdayImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="@color/white"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/thursdayValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:layout_weight="1"
+            android:text="TextView" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/FridayLayout"
+        android:layout_width="match_parent"
+        android:layout_height="22dp"
+        android:layout_marginTop="50px"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ThursdayLayout">
+        <TextView
+            android:id="@+id/friday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="110px"
+            android:textColor="@color/white"
+            android:layout_weight="1"
+            android:text="Friday" />
+
+        <TextView
+            android:id="@+id/fridayImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:layout_weight="1"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/fridayValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:layout_weight="1"
+            android:text="TextView" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/SaturdayLayout"
+        android:layout_width="match_parent"
+        android:layout_height="22dp"
+        android:layout_marginTop="50px"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/FridayLayout">
+        <TextView
+            android:id="@+id/saturday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="110px"
+            android:textColor="@color/white"
+            android:layout_weight="1"
+            android:text="Saturday" />
+
+        <TextView
+            android:id="@+id/saturdayImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:layout_weight="1"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/saturdayValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="@color/white"
+            android:text="TextView" />
+
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

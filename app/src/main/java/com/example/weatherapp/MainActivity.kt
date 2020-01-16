@@ -30,7 +30,12 @@ class MainActivity : AppCompatActivity(), IWeatherCallback {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        setupLoadScreen()
         checkPermission()
+    }
+
+    fun setupLoadScreen(){
+        sunnyView.visibility = View.GONE
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
@@ -93,8 +98,13 @@ class MainActivity : AppCompatActivity(), IWeatherCallback {
     override fun onDataReceived(weatherData: Weather?){
         Log.d("callback", weatherData.toString())
         ProgressLoader.visibility = View.GONE
+        sunnyView.visibility = View.VISIBLE
 
+        val degreeSymbol = "°"
 
+        currentMinValue.text = weatherData!!.main.temp_min.take(2) + degreeSymbol
+        currentValue.text = weatherData!!.main.temp.take(2) + degreeSymbol
+        currentMaxValue.text = weatherData!!.main.temp_max.take(2) + degreeSymbol
     }
 
 }

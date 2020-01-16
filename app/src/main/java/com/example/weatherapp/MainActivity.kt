@@ -12,25 +12,26 @@ import androidx.core.app.ActivityCompat
 import android.content.pm.PackageManager
 import androidx.core.content.ContextCompat
 import com.example.weatherapp.Helpers.WeatherService
+import com.example.weatherapp.Interfaces.IWeatherCallback
+import com.example.weatherapp.Models.Weather
 
 
 @SuppressLint("ByteOrderMark")
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), IWeatherCallback {
 
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private var longitude = 0.0
     private var latitude = 0.0
-    private var weatherData = ""
+    private var weatherData: Weather? = null
+    val weatherActivity = this
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        checkPermission();
+        checkPermission()
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int,
-                                            permissions: Array<String>, grantResults: IntArray) {
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
         when (requestCode) {
             123 -> {
                 if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
@@ -84,7 +85,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getWeatherData(latitude : Double, long: Double ) {
-        weatherData = WeatherService(this).getCurrentWeather();
+        weatherData = WeatherService(this).getCurrentWeather(weatherActivity);
+    }
+
+    override fun onDataReceived(weatherData: Weather?){
+        Log.d("callback", weatherData.toString());
     }
 
 }

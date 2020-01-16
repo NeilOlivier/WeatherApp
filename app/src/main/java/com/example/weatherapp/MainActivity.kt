@@ -10,10 +10,12 @@ import android.Manifest.permission.ACCESS_COARSE_LOCATION
 import android.annotation.SuppressLint
 import androidx.core.app.ActivityCompat
 import android.content.pm.PackageManager
+import android.view.View
 import androidx.core.content.ContextCompat
 import com.example.weatherapp.Helpers.WeatherService
 import com.example.weatherapp.Interfaces.IWeatherCallback
 import com.example.weatherapp.Models.Weather
+import kotlinx.android.synthetic.main.activity_main.*
 
 
 @SuppressLint("ByteOrderMark")
@@ -35,7 +37,7 @@ class MainActivity : AppCompatActivity(), IWeatherCallback {
         when (requestCode) {
             123 -> {
                 if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
-                    getLocation();
+                    getLocation()
                 } else {
 
                 }
@@ -64,7 +66,7 @@ class MainActivity : AppCompatActivity(), IWeatherCallback {
             )
         }
         else {
-            getLocation();
+            getLocation()
         }
     }
 
@@ -74,22 +76,25 @@ class MainActivity : AppCompatActivity(), IWeatherCallback {
         fusedLocationClient.lastLocation
             .addOnSuccessListener { location : Location? ->
                 if (location != null) {
-                    latitude = location.latitude;
-                    longitude = location.longitude;
+                    latitude = location.latitude
+                    longitude = location.longitude
 
-                    getWeatherData(latitude, longitude);
+                    getWeatherData(latitude, longitude)
                 }
             }.addOnFailureListener {
-                Log.d("test", it.toString());
+                Log.d("test", it.toString())
             }
     }
 
     private fun getWeatherData(latitude : Double, long: Double ) {
-        weatherData = WeatherService(this).getCurrentWeather(weatherActivity);
+        weatherData = WeatherService(this).getCurrentWeather(weatherActivity)
     }
 
     override fun onDataReceived(weatherData: Weather?){
-        Log.d("callback", weatherData.toString());
+        Log.d("callback", weatherData.toString())
+        ProgressLoader.visibility = View.GONE
+
+
     }
 
 }

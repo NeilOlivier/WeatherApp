@@ -10,7 +10,6 @@ import android.Manifest.permission.ACCESS_COARSE_LOCATION
 import android.annotation.SuppressLint
 import androidx.core.app.ActivityCompat
 import android.content.pm.PackageManager
-import android.graphics.Color
 import android.view.View
 import androidx.core.content.ContextCompat
 import com.example.weatherapp.Helpers.WeatherService
@@ -28,7 +27,7 @@ class MainActivity : AppCompatActivity(), IWeatherCallback{
     private var latitude = 0.0
     private var weatherData: CurrentWeather? = null
     private var weatherDataForcast: WeatherForcast? = null
-    val weatherActivity = this
+    private val weatherActivity = this
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,28 +40,20 @@ class MainActivity : AppCompatActivity(), IWeatherCallback{
         sunnyView.visibility = View.GONE
         temperature.visibility = View.GONE
         weatherType.visibility = View.GONE
-        linearLayout.visibility = View.GONE
-        currentDay.visibility = View.GONE
+        daysLinearLayout.visibility = View.GONE
+        iconLinearLayout.visibility = View.GONE
+        tempLinearLayout.visibility = View.GONE
         divider.visibility = View.GONE
-        tuesdayLayout.visibility = View.GONE
-        WednesdayLayout.visibility = View.GONE
-        ThursdayLayout.visibility = View.GONE
-        FridayLayout.visibility = View.GONE
-        SaturdayLayout.visibility = View.GONE
     }
 
     fun SetupLoadedScreen(){
         sunnyView.visibility = View.VISIBLE
         temperature.visibility = View.VISIBLE
         weatherType.visibility = View.VISIBLE
-        linearLayout.visibility = View.VISIBLE
-        currentDay.visibility = View.VISIBLE
         divider.visibility = View.VISIBLE
-        tuesdayLayout.visibility = View.VISIBLE
-        WednesdayLayout.visibility = View.VISIBLE
-        ThursdayLayout.visibility = View.VISIBLE
-        FridayLayout.visibility = View.VISIBLE
-        SaturdayLayout.visibility = View.VISIBLE
+        daysLinearLayout.visibility = View.VISIBLE
+        iconLinearLayout.visibility = View.VISIBLE
+        tempLinearLayout.visibility = View.VISIBLE
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
@@ -155,6 +146,9 @@ class MainActivity : AppCompatActivity(), IWeatherCallback{
                     applicationContext, // Context
                     R.drawable.sea_sunnypng // Drawable
                 ))
+
+            setIconImage(R.drawable.clear)
+
             MainView.setBackgroundColor(ContextCompat.getColor(this, R.color.backgroundSunny))
         }
         else if(weather == "rainy"){
@@ -163,6 +157,9 @@ class MainActivity : AppCompatActivity(), IWeatherCallback{
                     applicationContext, // Context
                     R.drawable.sea_rainy // Drawable
                 ))
+
+            setIconImage(R.drawable.rain)
+
             MainView.setBackgroundColor(ContextCompat.getColor(this, R.color.backgroundRainy))
         }
         else {
@@ -171,9 +168,21 @@ class MainActivity : AppCompatActivity(), IWeatherCallback{
                     applicationContext, // Context
                     R.drawable.sea_cloudy // Drawable
                 ))
+
+            setIconImage(R.drawable.partlysunny)
+
             MainView.setBackgroundColor(ContextCompat.getColor(this, R.color.backgroundCloudy))
 
          }
   }
+
+    fun setIconImage(resId: Int){
+        tuesdayImage.setImageDrawable(ContextCompat.getDrawable(applicationContext, resId))
+        wednesdayImage.setImageDrawable(ContextCompat.getDrawable(applicationContext, resId))
+        thursdayImage.setImageDrawable(ContextCompat.getDrawable(applicationContext, resId))
+        fridayImage.setImageDrawable(ContextCompat.getDrawable(applicationContext, resId))
+        saturdayImage.setImageDrawable(ContextCompat.getDrawable(applicationContext, resId))
+
+    }
 
 }

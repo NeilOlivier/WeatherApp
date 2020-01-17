@@ -55,262 +55,220 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/temperature" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
+    <View
+        android:id="@+id/divider"
         android:layout_width="match_parent"
-        android:layout_height="22dp"
-        android:layout_marginTop="1dp"
-        android:layout_marginLeft="10px"
-        android:orientation="horizontal"
+        android:layout_height="2px"
+        android:background="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="185px"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sunnyView">
+        app:layout_constraintTop_toBottomOf="@+id/sunnyView" />
+
+    <LinearLayout
+        android:id="@+id/daysLinearLayout"
+        android:layout_width="142dp"
+        android:layout_height="296dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sunnyView"
+        app:layout_constraintVertical_bias="0.0">
 
         <TextView
             android:id="@+id/currentMinValue"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="140px"
-            android:textColor="@color/white"
+            android:layout_height="5px"
             android:layout_weight="1"
-            android:text="TextView" />
+            android:text="TextView"
+            android:textColor="@color/white" />
 
-        <TextView
-            android:id="@+id/currentValue"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:layout_weight="1"
-            android:text="TextView" />
-
-        <TextView
-            android:id="@+id/currentMaxValue"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:layout_weight="1"
-            android:text="TextView" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/currentDay"
-        android:layout_width="match_parent"
-        android:layout_height="22dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
         <TextView
             android:id="@+id/currentMinText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="150px"
-            android:textColor="@color/white"
             android:layout_weight="1"
-            android:text="min" />
+            android:text="min"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/tuesday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Tuesday"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/thursday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Thursday"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/wednesday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Wednesday"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/friday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Friday"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/saturday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Saturday"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/iconLinearLayout"
+        android:layout_width="127dp"
+        android:layout_height="296dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tempLinearLayout"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/daysLinearLayout"
+        app:layout_constraintTop_toBottomOf="@+id/sunnyView"
+        app:layout_constraintVertical_bias="0.0">
+
+        <TextView
+            android:id="@+id/currentValue"
+            android:layout_width="wrap_content"
+            android:layout_height="5px"
+            android:layout_weight="1"
+            android:text="TextView"
+            android:textColor="@color/white" />
 
         <TextView
             android:id="@+id/currentV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
+            android:layout_marginTop="40px"
             android:layout_weight="1"
-            android:text="current" />
-
-        <TextView
-            android:id="@+id/cur"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:layout_weight="1"
-            android:text="max" />
-
-    </LinearLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2px"
-        android:id="@+id/divider"
-        android:background="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/currentDay"/>
-    <LinearLayout
-        android:id="@+id/tuesdayLayout"
-        android:layout_width="match_parent"
-        android:layout_height="22dp"
-        android:layout_marginTop="50px"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/currentDay">
-        <TextView
-            android:id="@+id/tuesday"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="110px"
-            android:textColor="@color/white"
-            android:layout_weight="1"
-            android:text="Tuesday" />
+            android:text="current"
+            android:textColor="@color/white" />
 
         <ImageView
             android:id="@+id/tuesdayImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="55px"
             android:textColor="@color/white"
-            app:srcCompat="@drawable/clear"/>
+            app:srcCompat="@drawable/clear" />
 
-        <TextView
-            android:id="@+id/tuesdayValue"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:layout_weight="1"
-            android:text="TextView" />
-
-    </LinearLayout>
-    <LinearLayout
-        android:id="@+id/WednesdayLayout"
-        android:layout_width="match_parent"
-        android:layout_height="22dp"
-        android:layout_marginTop="50px"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tuesdayLayout">
-        <TextView
-            android:id="@+id/wednesday"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="110px"
-            android:textColor="@color/white"
-            android:layout_weight="1"
-            android:text="Wednesday" />
-
-        <TextView
+        <ImageView
             android:id="@+id/wednesdayImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textColor="@color/white"
-            android:text="*" />
+            app:srcCompat="@drawable/clear" />
+
+        <ImageView
+            android:id="@+id/thursdayImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="@color/white"
+            app:srcCompat="@drawable/clear" />
+
+        <ImageView
+            android:id="@+id/fridayImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="@color/white"
+            app:srcCompat="@drawable/clear" />
+
+        <ImageView
+            android:id="@+id/saturdayImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="@color/white"
+            app:srcCompat="@drawable/clear" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/tempLinearLayout"
+        android:layout_width="137dp"
+        android:layout_height="293dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sunnyView"
+        app:layout_constraintVertical_bias="0.0">
+
+        <TextView
+            android:id="@+id/currentMaxValue"
+            android:layout_width="wrap_content"
+            android:layout_height="5px"
+            android:layout_weight="1"
+            android:text="TextView"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/cur"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="max"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/tuesdayValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="TextView"
+            android:textColor="@color/white" />
 
         <TextView
             android:id="@+id/wednesdayValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
             android:layout_weight="1"
-            android:text="TextView" />
-
-    </LinearLayout>
-    <LinearLayout
-        android:id="@+id/ThursdayLayout"
-        android:layout_width="match_parent"
-        android:layout_height="22dp"
-        android:layout_marginTop="50px"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/WednesdayLayout">
-        <TextView
-            android:id="@+id/thursday"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="110px"
-            android:textColor="@color/white"
-            android:layout_weight="1"
-            android:text="Thursday" />
-
-        <TextView
-            android:id="@+id/thursdayImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginLeft="38px"
-            android:textColor="@color/white"
-            android:text="*" />
+            android:text="TextView"
+            android:textColor="@color/white" />
 
         <TextView
             android:id="@+id/thursdayValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
             android:layout_weight="1"
-            android:text="TextView" />
-
-    </LinearLayout>
-    <LinearLayout
-        android:id="@+id/FridayLayout"
-        android:layout_width="match_parent"
-        android:layout_height="22dp"
-        android:layout_marginTop="50px"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ThursdayLayout">
-        <TextView
-            android:id="@+id/friday"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="110px"
-            android:textColor="@color/white"
-            android:layout_weight="1"
-            android:text="Friday" />
-
-        <TextView
-            android:id="@+id/fridayImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:layout_marginLeft="101px"
-            android:layout_weight="1"
-            android:text="*" />
+            android:text="TextView"
+            android:textColor="@color/white" />
 
         <TextView
             android:id="@+id/fridayValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
             android:layout_weight="1"
-            android:text="TextView" />
-
-    </LinearLayout>
-    <LinearLayout
-        android:id="@+id/SaturdayLayout"
-        android:layout_width="match_parent"
-        android:layout_height="22dp"
-        android:layout_marginTop="50px"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/FridayLayout">
-        <TextView
-            android:id="@+id/saturday"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="110px"
-            android:textColor="@color/white"
-            android:layout_weight="1"
-            android:text="Saturday" />
-
-        <TextView
-            android:id="@+id/saturdayImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:layout_marginLeft="50px"
-            android:layout_weight="1"
-            android:text="*" />
+            android:text="TextView"
+            android:textColor="@color/white" />
 
         <TextView
             android:id="@+id/saturdayValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textColor="@color/white"
-            android:text="TextView" />
-
+            android:text="TextView"
+            android:textColor="@color/white" />
     </LinearLayout>
 
 

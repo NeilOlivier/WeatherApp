@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/MainView"
     android:background="@color/backgroundSunny"
     tools:context=".MainActivity">
 
@@ -13,7 +14,6 @@
         android:layout_height="wrap_content"
         android:indeterminate="true"
         android:indeterminateTint="@color/colorPrimaryDark"
-        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,8 +31,8 @@
 
     <TextView
         android:id="@+id/temperature"
-        android:layout_width="89dp"
-        android:layout_height="54dp"
+        android:layout_width="86dp"
+        android:layout_height="39dp"
         android:layout_marginTop="132dp"
         android:text="23 \u00B0"
         android:textColor="@color/white"
@@ -60,6 +60,7 @@
         android:layout_width="match_parent"
         android:layout_height="22dp"
         android:layout_marginTop="1dp"
+        android:layout_marginLeft="10px"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -128,6 +129,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="2px"
+        android:id="@+id/divider"
         android:background="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -150,13 +152,13 @@
             android:layout_weight="1"
             android:text="Tuesday" />
 
-        <TextView
+        <ImageView
             android:id="@+id/tuesdayImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="55px"
             android:textColor="@color/white"
-            android:layout_weight="1"
-            android:text="TextView" />
+            app:srcCompat="@drawable/clear"/>
 
         <TextView
             android:id="@+id/tuesdayValue"
@@ -191,7 +193,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textColor="@color/white"
-            android:text="TextView" />
+            android:text="*" />
 
         <TextView
             android:id="@+id/wednesdayValue"
@@ -225,8 +227,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:layout_marginLeft="38px"
             android:textColor="@color/white"
-            android:text="TextView" />
+            android:text="*" />
 
         <TextView
             android:id="@+id/thursdayValue"
@@ -260,8 +263,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/white"
+            android:layout_marginLeft="101px"
             android:layout_weight="1"
-            android:text="TextView" />
+            android:text="*" />
 
         <TextView
             android:id="@+id/fridayValue"
@@ -295,8 +299,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/white"
+            android:layout_marginLeft="50px"
             android:layout_weight="1"
-            android:text="TextView" />
+            android:text="*" />
 
         <TextView
             android:id="@+id/saturdayValue"

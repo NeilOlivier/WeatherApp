@@ -5,4 +5,6 @@
     <color name="colorAccent">#D81B60</color>
     <color name="white">#ffffff</color>
     <color name="backgroundSunny">#4a91e2</color>
+    <color name="backgroundCloudy">#54717a</color>
+    <color name="backgroundRainy">#57575d</color>
 </resources>

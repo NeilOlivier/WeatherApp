@@ -1,5 +1,6 @@
 package com.example.weatherapp.Helpers
 
+import android.app.AlertDialog
 import android.content.Context
 import android.util.Log
 import com.android.volley.Request
@@ -10,6 +11,17 @@ import com.example.weatherapp.Interfaces.IWeatherCallback
 import com.example.weatherapp.Models.CurrentWeather
 import com.example.weatherapp.Models.WeatherForcast
 import com.google.gson.Gson
+//import android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS
+//import android.content.Intent
+//import androidx.core.content.ContextCompat.startActivity
+//import android.content.DialogInterface
+//import com.example.weatherapp.MainActivity
+//import android.location.LocationManager
+//import android.provider.Settings
+//import androidx.core.app.ActivityCompat.startActivityForResult
+//import androidx.core.content.ContextCompat.getSystemService
+//import androidx.core.content.ContextCompat.startActivity
+//import android.provider.Settings.ACTION_SECURITY_SETTINGS
 
 class WeatherService(var context: Context) {
 
@@ -22,13 +34,13 @@ class WeatherService(var context: Context) {
         val stringReq = StringRequest(
             Request.Method.GET, url,
             Response.Listener<String> { response ->
-                Log.d("volley",response.toString())
+                Log.d("currentVolleyResponse",response.toString())
                 var gson = Gson()
                 weatherObj = gson.fromJson<CurrentWeather>(response.toString(), CurrentWeather::class.java)
                 data.onDataReceived(weatherObj);
             },
             Response.ErrorListener {
-                Log.d("volley","fail")
+                Log.d("errorVolley","fail")
 
             })
         queue.add(stringReq)
@@ -51,12 +63,42 @@ class WeatherService(var context: Context) {
                 data.onDataForcastReceived(weatherObj);
             },
             Response.ErrorListener {
-                Log.d("volley",it.toString())
+                Log.d("ErrorVolley",it.toString())
 
             })
         queue.add(stringReq)
 
         return weatherObj;
     }
+
+//    private fun locationEnabled() {
+//        val lm = getSystemService(context, WeatherForcast::class.java) as LocationManager?
+//        var gps_enabled = false
+//        var network_enabled = false
+//        try {
+//            gps_enabled = lm!!.isProviderEnabled(LocationManager.GPS_PROVIDER)
+//        } catch (e: Exception) {
+//            e.printStackTrace()
+//        }
+//
+//        try {
+//            network_enabled = lm!!.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
+//        } catch (e: Exception) {
+//            e.printStackTrace()
+//        }
+//
+//        if (!gps_enabled && !network_enabled) {
+//            AlertDialog.Builder(context)
+//                .setMessage("GPS Enable")
+//                .setPositiveButton("Settings",
+//                    DialogInterface.OnClickListener { paramDialogInterface, paramInt ->
+//                        val intent = Intent(ACTION_LOCATION_SOURCE_SETTINGS)
+//                        startActivity(context, intent, null)
+//                    })
+//                .setNegativeButton("Cancel", null)
+//                .show()
+//        }
+//    }
+
 
 }

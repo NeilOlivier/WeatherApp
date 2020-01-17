@@ -61,13 +61,17 @@ class MainActivity : AppCompatActivity(), IWeatherCallback{
             123 -> {
                 if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
                     getLocation()
-                } else {
-
+                }
+                else{
+                    ActivityCompat.requestPermissions(
+                        this,
+                        arrayOf(
+                            ACCESS_COARSE_LOCATION
+                        ),
+                        123
+                    )
                 }
                 return
-            }
-            else -> {
-
             }
         }
     }

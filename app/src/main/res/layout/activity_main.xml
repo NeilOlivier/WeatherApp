@@ -67,8 +67,8 @@
 
     <LinearLayout
         android:id="@+id/daysLinearLayout"
-        android:layout_width="142dp"
-        android:layout_height="296dp"
+        android:layout_width="139dp"
+        android:layout_height="302dp"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -135,8 +135,8 @@
 
     <LinearLayout
         android:id="@+id/iconLinearLayout"
-        android:layout_width="127dp"
-        android:layout_height="296dp"
+        android:layout_width="109dp"
+        android:layout_height="284dp"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -149,7 +149,7 @@
         <TextView
             android:id="@+id/currentValue"
             android:layout_width="wrap_content"
-            android:layout_height="7px"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="TextView"
             android:textColor="@color/white" />
@@ -158,7 +158,7 @@
             android:id="@+id/currentV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50px"
+            android:layout_marginTop="10px"
             android:layout_weight="1"
             android:text="current"
             android:textColor="@color/white" />

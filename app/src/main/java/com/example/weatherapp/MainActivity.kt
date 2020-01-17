@@ -10,7 +10,9 @@ import android.Manifest.permission.ACCESS_COARSE_LOCATION
 import android.annotation.SuppressLint
 import androidx.core.app.ActivityCompat
 import android.content.pm.PackageManager
+import android.location.LocationManager
 import android.view.View
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.example.weatherapp.Helpers.WeatherService
 import com.example.weatherapp.Interfaces.IWeatherCallback
@@ -32,7 +34,10 @@ class MainActivity : AppCompatActivity(), IWeatherCallback{
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        // Hidding the items till we have data back from the API
         setupLoadScreen()
+
+        // Checking if location is turned on so the we can use lon and lat to call API
         checkPermission()
     }
 
@@ -77,7 +82,7 @@ class MainActivity : AppCompatActivity(), IWeatherCallback{
     }
 
     fun checkPermission(){
-        if (ContextCompat.checkSelfPermission(
+        if (ActivityCompat.checkSelfPermission(
                 this,
                 ACCESS_COARSE_LOCATION
             ) != PackageManager.PERMISSION_GRANTED
@@ -96,19 +101,28 @@ class MainActivity : AppCompatActivity(), IWeatherCallback{
     }
 
     fun getLocation(){
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+        if (isLocationEnabled()) {
+            fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
-        fusedLocationClient.lastLocation
-            .addOnSuccessListener { location : Location? ->
-                if (location != null) {
-                    latitude = location.latitude
-                    longitude = location.longitude
+            fusedLocationClient.lastLocation
+                .addOnSuccessListener { location: Location? ->
+                    if (location != null) {
+                        latitude = location.latitude
+                        longitude = location.longitude
 
-                    getWeatherData(latitude, longitude)
+                        getWeatherData(latitude, longitude)
+                    }
+                }.addOnFailureListener {
+                    Log.d("test", it.toString())
                 }
-            }.addOnFailureListener {
-                Log.d("test", it.toString())
-            }
+        }
+        else
+        {
+            val duration = Toast.LENGTH_LONG
+
+            val toast = Toast.makeText(applicationContext, "Please turn on location", duration)
+            toast.show()
+        }
     }
 
     private fun getWeatherData(latitude : Double, long: Double ) {
@@ -116,6 +130,7 @@ class MainActivity : AppCompatActivity(), IWeatherCallback{
         weatherDataForcast = WeatherService(this).getForcastWeather(weatherActivity)
     }
 
+    // Current API endpoint callback
     override fun onDataReceived(weatherData: CurrentWeather?){
         Log.d("callback", weatherData.toString())
         ProgressLoader.visibility = View.GONE
@@ -132,6 +147,7 @@ class MainActivity : AppCompatActivity(), IWeatherCallback{
         currentMaxValue.text = weatherData!!.main.temp_max.take(2) + degreeSymbol
     }
 
+    // Forcast API endpoint callback
     override fun onDataForcastReceived(weatherData: WeatherForcast?) {
         Log.d("callbackForcast", weatherData.toString())
         tuesdayValue.text = weatherData!!.list[0].main.temp_max.take(2) + "°"
@@ -141,6 +157,7 @@ class MainActivity : AppCompatActivity(), IWeatherCallback{
         saturdayValue.text = weatherData!!.list[4].main.temp_max.take(2) + "°"
     }
 
+    // This is to change the skin based on the weather
     fun setupWeatherSkins(weather: String){
         if(weather == "clear sky") {
             sunnyView.setImageDrawable(
@@ -176,7 +193,7 @@ class MainActivity : AppCompatActivity(), IWeatherCallback{
             MainView.setBackgroundColor(ContextCompat.getColor(this, R.color.backgroundCloudy))
 
          }
-  }
+    }
 
     fun setIconImage(resId: Int){
         tuesdayImage.setImageDrawable(ContextCompat.getDrawable(applicationContext, resId))
@@ -187,4 +204,10 @@ class MainActivity : AppCompatActivity(), IWeatherCallback{
 
     }
 
+    private fun isLocationEnabled(): Boolean {
+        var locationManager: LocationManager = getSystemService(LOCATION_SERVICE) as LocationManager
+        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(
+            LocationManager.NETWORK_PROVIDER
+        )
+    }
 }

@@ -73,13 +73,11 @@ class MainActivity : AppCompatActivity(), IWeatherCallback{
     }
 
     fun checkPermission(){
-
         if (ContextCompat.checkSelfPermission(
                 this,
                 ACCESS_COARSE_LOCATION
             ) != PackageManager.PERMISSION_GRANTED
-        ) {//Can add more as per requirement
-
+        ) {
             ActivityCompat.requestPermissions(
                 this,
                 arrayOf(
